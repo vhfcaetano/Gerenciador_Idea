@@ -1,0 +1,16 @@
+section.kanban {
+  display: flex;
+  gap: 4.8rem;
+  padding-top: 3.2rem;
+}
+
+section.kanban > * {
+  flex: 1;
+  padding: 2.4rem;
+}
+
+section.kanban h2 {
+  font-size: 2rem;
+  color: #a8cf45;
+  padding: 2.4rem 0;
+}
