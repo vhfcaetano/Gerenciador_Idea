@@ -12,6 +12,9 @@ export function App() {
           <div className={styles.inner}>
             <InnerBar />
             <KanbanArea />
+            <footer>
+              <p>Criado com ❤️ Victor Hugo</p>
+            </footer>
           </div>
         </main>
       </div>

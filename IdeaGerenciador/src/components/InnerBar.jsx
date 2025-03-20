@@ -7,7 +7,7 @@ export function InnerBar() {
     <div className={styles.inner}>
       <section className={styles.titleAvatar}>
         <h1>
-          Boards <img src="./assets/pencil.svg" alt="" />
+          Board <img src="./assets/pencil.svg" alt="" />
         </h1>
         <img src="https://github.com/vhfcaetano.png" alt="avatar" />
       </section>

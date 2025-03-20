@@ -38,3 +38,10 @@ main .inner {
 main {
   padding-top: 0.8rem;
 }
+
+footer {
+  font-size: 14px;
+  text-align: center;
+  padding: 12px 0;
+  color: #fff;
+}
