@@ -1,0 +1,149 @@
+.loginPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top, #a8cf45 80%, #a8cf45 80%, #a7a7a7 100%);
+}
+
+.bannerlogin {
+  width: 70%;
+  height: 100vh;
+}
+
+.bannerlogin img {
+  width: 100%;
+  height: 100vh;
+}
+
+.formLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  width: 30%;
+  height: 100vh;
+  padding: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+}
+
+.form p {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.form input[type="image"] {
+  margin: 1rem 0;
+}
+
+.form hr {
+  width: 100%;
+  margin: 1rem 0;
+  border: 1px solid #000;
+}
+
+.signup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem 0 1rem;
+}
+
+.form > a {
+  display: flex;
+  justify-content: end;
+  text-decoration: none;
+  color: #000;
+  margin-bottom: 1rem;
+}
+
+.formLogin h2 {
+  margin: 48px 12px 24px;
+}
+
+.formLogin input {
+  height: 35px;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+.formLogin label {
+  margin-bottom: 0.5rem;
+}
+
+/* Responsividade */
+
+@media screen and (max-width: 790px) {
+  .formLogin {
+    width: 80%;
+    height: 100vh;
+    margin-bottom: 2rem;
+  }
+
+  .form {
+    width: 80%;
+    height: 60vh;
+  }
+
+  .form img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .formLogin h2 {
+    margin: 24px 12px 12px;
+  }
+
+  .signup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .loginPage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, #a8cf45 80%, #a8cf45 80%, #a7a7a7 100%);
+  }
+
+  .bannerlogin img {
+    display: none;
+  }
+
+  .formLogin {
+    width: 100%;
+    height: 100vh;
+    margin-bottom: 2rem;
+  }
+
+  .form {
+    width: 80%;
+    height: 60vh;
+  }
+
+  .formLogin h2 {
+    margin: 24px 12px 12px;
+  }
+
+  .signup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
