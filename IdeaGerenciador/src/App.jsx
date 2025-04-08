@@ -6,23 +6,19 @@ import { Menu } from "./components/Menu";
 
 export function App() {
   return (
-    <div>
-      <LoginPage />
+    <div className={styles.content}>
+      <div className={styles.app}>
+        <Menu />
+        <main>
+          <div className={styles.inner}>
+            <InnerBar />
+            <KanbanArea />
+            <footer>
+              <p>Criado com ❤️ Victor Hugo</p>
+            </footer>
+          </div>
+        </main>
+      </div>
     </div>
-
-    // <div className={styles.content}>
-    //   <div className={styles.app}>
-    //     <Menu />
-    //     <main>
-    //       <div className={styles.inner}>
-    //         <InnerBar />
-    //         <KanbanArea />
-    //         <footer>
-    //           <p>Criado com ❤️ Victor Hugo</p>
-    //         </footer>
-    //       </div>
-    //     </main>
-    //   </div>
-    // </div>
   );
 }

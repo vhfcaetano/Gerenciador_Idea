@@ -1,169 +1,73 @@
-.kanban {
+.KanbanArea {
   display: flex;
-  gap: 4.8rem;
-  padding-top: 3.2rem;
+  margin-top: 2.5rem;
+  height: 100%;
+  gap: 2rem;
 }
 
-.kanban > * {
-  flex: 1;
-  padding: 2.4rem;
+.KanbanArea h1 {
+  font-size: 1.8rem;
+  color: #000000;
 }
 
-.kanban h2 {
-  font-size: 2rem;
-  color: #a8cf45;
-  padding: 2.4rem 0;
-}
-
-/* Cards */
-
-.card {
-  padding: 2.4rem;
-  background: #ffffff;
+.Kanbantodo {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #a6d4f5;
   border-radius: 0.8rem;
-
-  line-height: 130%;
-  transition: 0.1s;
+  margin: 0 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #a6d4f5;
 }
 
-.card:hover {
-  box-shadow: 0rem 0.2rem 1rem #eae2fd;
-}
-
-.card h3 {
-  font-size: 1.4rem;
-  color: #403937;
-}
-
-.card p {
-  font-weight: 500;
-  font-size: 1.4rem;
-
-  color: #756966;
-
-  margin-top: 1rem;
-}
-
-.card .tags {
-  margin-top: 1rem;
-
+.KanbanDoing {
   display: flex;
-  align-items: center;
-  gap: 0.8rem;
-
-  color: #7c3aed;
-  font-weight: 500;
-}
-
-.card .tags span {
-  font-size: 1.1rem;
-  line-height: 130%;
-  background: #e2d6ff;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 60vh;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #e3dcfb;
   border-radius: 0.8rem;
-  padding: 0.4rem 0.8rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #e3dcfb;
 }
-
-.cards {
+.KanbanDone {
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
+  height: 60vh;
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #bfecdf;
+  border-radius: 0.8rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #bfecdf;
 }
 
-.cardEdit {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Seção Adicionar Tarefa */
-.addTask {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  gap: 12px;
-}
-
-.addTaskShowHide button {
-  width: 200px;
-}
-
-.addTask {
-  transition: all 0.3s ease; /* Transição suave */
-}
-
-.addTask.hide {
-  display: none;
-  transition: all 0.3s ease; /* Oculta o formulário */
-}
-
-.addTask.show {
-  display: block; /* Mostra o formulário */
-  background-color: #a8cf45;
-  border-radius: 12px;
-  color: #000000;
-}
-
-.addTaskList {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.addTaskList h2 {
-  text-align: center;
-}
-
-.addTask h2 {
-  font-size: 14px;
-  color: #000;
-}
-
-.addTask button {
-  padding: 6px;
-  background-color: #a8cf45;
-  color: #000000;
-  font-weight: bold;
-  border-radius: 12px;
-}
-
-.addTask input {
-  background: none;
-  padding: 6px;
-  border-radius: 12px;
-}
-
-.addTask textarea {
-  background: none;
-  padding: 6px;
-  border-radius: 12px;
-}
-
-.addTask ::placeholder {
-  color: #000000;
-}
-
-/* Seção Editar Tarefa */
-
-.editTask {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.taskBtn button {
+.HeaderKanban {
   display: flex;
   justify-content: space-between;
-  padding: 0 12px;
-  margin-top: 12px;
-  border: none;
+  align-items: start;
 }
 
-.editIcon {
-  width: 20px;
-  height: 20px;
-  border: none;
+.HeaderKanban button {
+  gap: 0.5rem;
   background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
 }

@@ -1,0 +1,122 @@
+.KanbanBox {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8rem;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.KanbanBox h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.KanbanBox input {
+  padding: 0.5rem;
+  border: none;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.editing {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.editing input {
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.editing textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.editing button {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.viewing {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.viewing h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: 10%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.viewingButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: 10%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: end;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+.fixedTop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

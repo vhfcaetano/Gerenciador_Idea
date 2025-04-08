@@ -1,228 +1,114 @@
-import styles from "./KanbanArea.module.css";
-import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import { KanbanBox } from "./KanbanBox";
+import { FaPlus } from "react-icons/fa";
+import { LuStretchVertical } from "react-icons/lu";
 import { useState } from "react";
-import { IoMdAddCircle } from "react-icons/io";
-import { MdHideSource } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
-
-const initialTasks = {
-  todo: [
-    {
-      id: "1",
-      content: "",
-      description: "",
-    },
-  ],
-  doing: [],
-  done: [],
-};
+import styles from "./KanbanArea.module.css";
 
 export function KanbanArea() {
-  const [tasks, setTasks] = useState(initialTasks);
-  const [editingTask, setEditingTask] = useState(null); // Estado para gerenciar edição
-  const [editingContent, setEditingContent] = useState("");
-  const [editingDescription, setEditingDescription] = useState(""); // Para editar descrição
-  const [newTaskContent, setNewTaskContent] = useState(""); // Para adicionar nova tarefa
-  const [newTaskDescription, setNewTaskDescription] = useState(""); // Para descrição da nova tarefa
+  const [tasksTodo, setTasksTodo] = useState([{ id: 1, title: "Nova Tarefa" }]);
+  const [tasksDoing, setTasksDoing] = useState([
+    { id: 1, title: "Nova Tarefa" },
+  ]);
+  const [tasksDone, setTasksDone] = useState([{ id: 1, title: "Nova Tarefa" }]);
 
-  const onDragEnd = (result) => {
-    const { source, destination } = result;
-
-    if (!destination) return;
-
-    const sourceColumn = Array.from(tasks[source.droppableId]);
-    const [movedItem] = sourceColumn.splice(source.index, 1);
-
-    const destinationColumn = Array.from(tasks[destination.droppableId]);
-    destinationColumn.splice(destination.index, 0, movedItem);
-
-    setTasks((prev) => ({
-      ...prev,
-      [source.droppableId]: sourceColumn,
-      [destination.droppableId]: destinationColumn,
-    }));
-  };
-
-  // Função para adicionar uma nova tarefa
   const addTask = () => {
-    if (!newTaskContent.trim()) return; // Não adiciona se o conteúdo estiver vazio
-    const newTask = {
-      id: Date.now().toString(), // Gera um ID único com timestamp
-      content: newTaskContent,
-      description: newTaskDescription,
-      tags: [],
-    };
-
-    setTasks((prev) => ({
-      ...prev,
-      todo: [...prev.todo, newTask], // Adiciona à coluna "A fazer"
-    }));
-
-    // Limpa os campos do formulário
-    setNewTaskContent("");
-    setNewTaskDescription("");
+    const newTask = { id: Date.now(), title: "Nova Tarefa" };
+    setTasksTodo([...tasksTodo, newTask]);
   };
 
-  // Função para apagar uma tarefa
-  const deleteTask = (columnId, taskId) => {
-    setTasks((prev) => ({
-      ...prev,
-      [columnId]: prev[columnId].filter((task) => task.id !== taskId), // Remove o card pelo ID
-    }));
+  const addTaskDoing = () => {
+    const newTask = { id: Date.now(), title: "Nova Tarefa" };
+    setTasksDoing([...tasksDoing, newTask]);
   };
 
-  // Função para iniciar a edição
-  const startEditing = (task) => {
-    setEditingTask(task.id);
-    setEditingContent(task.content);
-    setEditingDescription(task.description);
+  const addTaskDone = () => {
+    const newTask = { id: Date.now(), title: "Nova Tarefa" };
+    setTasksDone([...tasksDone, newTask]);
   };
 
-  // Função para salvar as edições
-  const saveEditing = (columnId) => {
-    setTasks((prev) => ({
-      ...prev,
-      [columnId]: prev[columnId].map((task) =>
-        task.id === editingTask
-          ? {
-              ...task,
-              content: editingContent,
-              description: editingDescription,
-            }
-          : task
-      ),
-    }));
-    setEditingTask(null);
-    setEditingContent("");
-    setEditingDescription("");
+  const deleteTask = (id) => {
+    setTasksTodo(tasksTodo.filter((task) => task.id !== id));
   };
 
-  // Função para cancelar a edição
-  const cancelEditing = () => {
-    setEditingTask(null);
-    setEditingContent("");
-    setEditingDescription("");
+  const deleteTaskDoing = (id) => {
+    setTasksDoing(tasksDoing.filter((task) => task.id !== id));
   };
 
-  const [showAddTask, setShowAddTask] = useState(false); // Estado para mostrar/ocultar
+  const deleteTaskDone = (id) => {
+    setTasksDone(tasksDone.filter((task) => task.id !== id));
+  };
 
   return (
-    <div>
-      {/* Formulário para adicionar nova tarefa */}
-      <div className={styles.addTask}>
-        <div className={styles.addTaskShowHide}>
-          <button onClick={() => setShowAddTask((prev) => !prev)}>
-            {showAddTask ? <MdHideSource /> : <IoMdAddCircle />}
-          </button>
-        </div>
-        <div
-          className={`${styles.addTask} ${
-            showAddTask ? styles.show : styles.hide
-          }`}
-        >
-          <div className={styles.addTaskList}>
-            <h2>Adicionar Nova Tarefa</h2>
-            <input
-              type="text"
-              placeholder="Título da tarefa"
-              value={newTaskContent}
-              onChange={(e) => setNewTaskContent(e.target.value)}
-            />
-            <textarea
-              placeholder="Descrição da tarefa"
-              value={newTaskDescription}
-              onChange={(e) => setNewTaskDescription(e.target.value)}
-            />
-            <button onClick={addTask}>Adicionar</button>
+    <div className={styles.KanbanArea}>
+      <div className={styles.Kanbantodo}>
+        <div className={styles.HeaderKanban}>
+          <h1>A FAZER</h1>
+          <div className={styles.HeaderButtons}>
+            <button className={styles.addButton} onClick={addTask}>
+              <FaPlus />
+            </button>
+            <button className={styles.addButton}>
+              <LuStretchVertical />
+            </button>
           </div>
         </div>
-      </div>
-
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className={styles.kanban}>
-          {Object.entries(tasks).map(([columnId, columnTasks]) => (
-            <Droppable key={columnId} droppableId={columnId}>
-              {(provided) => (
-                <div
-                  className={styles[columnId]}
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  <h2>
-                    {columnId === "todo"
-                      ? "A fazer"
-                      : columnId === "doing"
-                      ? "Fazendo"
-                      : "Feito"}
-                  </h2>
-                  <div className={styles.cards}>
-                    {columnTasks.map((task, index) => (
-                      <Draggable
-                        key={task.id}
-                        draggableId={task.id}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            className={styles.card}
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            {editingTask === task.id ? (
-                              <div className={styles.editTask}>
-                                <input
-                                  type="text"
-                                  placeholder="Digite o titulo"
-                                  value={editingContent}
-                                  onChange={(e) =>
-                                    setEditingContent(e.target.value)
-                                  }
-                                />
-                                <textarea
-                                  placeholder="Digite a Descrição"
-                                  value={editingDescription}
-                                  onChange={(e) =>
-                                    setEditingDescription(e.target.value)
-                                  }
-                                />
-                                <button onClick={() => saveEditing(columnId)}>
-                                  Salvar
-                                </button>
-                                <button onClick={cancelEditing}>
-                                  Cancelar
-                                </button>
-                              </div>
-                            ) : (
-                              <>
-                                <h3>{task.content}</h3>
-                                <p>{task.description}</p>
-                                <div className={styles.taskBtn}>
-                                  <button onClick={() => startEditing(task)}>
-                                    <FaRegEdit className={styles.editIcon} />
-                                  </button>
-                                  <button
-                                    onClick={() =>
-                                      deleteTask(columnId, task.id)
-                                    }
-                                  >
-                                    Apagar
-                                  </button>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                </div>
-              )}
-            </Droppable>
+        <ul>
+          {tasksTodo.map((task) => (
+            <li key={task.id}>
+              <KanbanBox
+                title={task.title}
+                onDelete={() => deleteTask(task.id)}
+              />
+            </li>
           ))}
+        </ul>
+      </div>
+      <div className={styles.KanbanDoing}>
+        <div className={styles.HeaderKanban}>
+          <h1>FAZENDO</h1>
+          <div className={styles.HeaderButtons}>
+            <button className={styles.addButton} onClick={addTaskDoing}>
+              <FaPlus />
+            </button>
+            <button className={styles.addButton}>
+              <LuStretchVertical />
+            </button>
+          </div>
         </div>
-      </DragDropContext>
+        <ul>
+          {tasksDoing.map((task) => (
+            <li key={task.id}>
+              <KanbanBox
+                title={task.title}
+                onDelete={() => deleteTaskDoing(task.id)}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className={styles.KanbanDone}>
+        <div className={styles.HeaderKanban}>
+          <h1>FEITO</h1>
+          <div className={styles.HeaderButtons}>
+            <button className={styles.addButton} onClick={addTaskDone}>
+              <FaPlus />
+            </button>
+            <button className={styles.addButton}>
+              <LuStretchVertical />
+            </button>
+          </div>
+        </div>
+        <ul>
+          {tasksDone.map((task) => (
+            <li key={task.id}>
+              <KanbanBox
+                title={task.title}
+                onDelete={() => deleteTaskDone(task.id)}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
